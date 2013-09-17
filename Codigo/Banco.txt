@@ -1,0 +1,25 @@
+CREATE TABLE ocupante(
+nome VARCHAR(100)
+codigo VARCHAR(6) PRIMARY KEY
+)
+
+CREATE TABLE responsavel(
+nome VARCHAR(100)
+cpf VARCHAR(15)
+codigo VARCHAR(6)
+)
+
+CREATE TABLE sala(
+codigo VARCHAR(6)
+nome VARCHAR(100)
+responsavel_codigo(6)
+capacidade INTEGER
+FOREIGN KEY(responsavel_codigo)REFERENCES responsavel(codigo)
+)
+
+CREATE TABLE sala_ocupante(
+ocupante_codigo VARCHAR(6)
+sala_codigo VARCHAR(6)
+FOREIGN KEY(ocupante_codigo) REFERENCES ocupante(codigo)
+FOREIGN KEY(sala_codigo) REFERENCES sala(codigo)
+)
