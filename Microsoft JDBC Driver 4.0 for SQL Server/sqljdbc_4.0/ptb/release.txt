@@ -1,0 +1,131 @@
+﻿Informações sobre a versão
+Microsoft JDBC Driver 4.0 para SQL Server
+Março 2012
+
+
+INTRODUÇÃO
+------------
+Este arquivo contém as últimas novidades e outras informações
+importantes que complementam a documentação do Microsoft JDBC
+Driver 4.0 para SQL Server. Você deve ler este arquivo inteiramente
+antes de instalar o driver JDBC.
+
+Seus comentários são muito importantes para nós e procuraremos
+responder a eles de maneira oportuna. Para obter informações sobre
+o envio de comentários através do uso de blogs do driver JDBC
+e de fóruns online, consulte a página do Microsoft JDBC Driver
+4.0 para SQL Server em http://msdn.microsoft.com/data/jdbc.
+
+
+INSTALAÇÃO
+------------
+As instruções sobre a instalação do driver JDBC estão localizadas no
+arquivo install.txt. Consulte esse arquivo para obter informações sobre
+a instalação do driver JDBC nos sistemas operacionais Windows e Unix.
+
+SISTEMAS OPERACIONAIS COM SUPORTE
+---------------------------
+O Microsoft JDBC Driver 4.0 para SQL Server oferece suporte aos seguintes tipos de sistemas operacionais: 
+Linux, Unix, Windows Server 2008,
+Windows Vista Service Pack 1, Windows Server 2008 R2 e Windows 7.
+
+A lista acima é um exemplo de alguns sistemas operacionais com suporte.
+O driver JDBC foi criado para operar em qualquer sistema operacional que
+ofereça suporte ao uso de uma JVM (Máquina Virtual Java).  Porém, somente
+os sistemas operacionais Sun Solaris, SUSE Linux e Windows Vista Service
+Pack 1 ou posterior foram testados.
+
+CONTEÚDO DA VERSÃO
+----------------
+O zip executável do Microsoft JDBC Driver 4.0 para SQL Server ou o arquivo tar
+desempacota os arquivos abaixo nos locais especificados,
+relacionados ao diretório de instalação selecionado:
+
+<diretório de instalação>\sqljdbc_<versão>\<idioma>\install.txt
+<diretório de instalação>\sqljdbc_<versão>\<idioma>\release.txt
+<diretório de instalação>\sqljdbc_<versão>\<idioma>\license.txt
+<diretório de instalação>\sqljdbc_<versão>\<idioma>\sqljdbc.jar
+<diretório de instalação>\sqljdbc_<versão>\<idioma>\sqljdbc4.jar
+<diretório de instalação>\sqljdbc_<versão>\<idioma>\auth\x86\sqljdbc_auth.dll
+<diretório de instalação>\sqljdbc_<versão>\<idioma>\auth\x64\sqljdbc_auth.dll
+<diretório de instalação>\sqljdbc_<versão>\<idioma>\help\default.htm
+<diretório de instalação>\sqljdbc_<versão>\<idioma>\help\index.htm
+<diretório de instalação>\sqljdbc_<versão>\<idioma>\help\toc.htm
+<diretório de instalação>\sqljdbc_<versão>\<idioma>\help\html\<doc pages...>
+<diretório de instalação>\sqljdbc_<versão>\<idioma>\help\local\<doc files...>
+<installation directory>\sqljdbc_<versão>\<idioma>\help\samples\<sample files...>
+<diretório de instalação>\sqljdbc_<versão>\<idioma>\xa\xa_install.sql
+<diretório de instalação>\sqljdbc_<versão>\<idioma>\xa\x86\sqljdbc_xa.dll
+<diretório de instalação>\sqljdbc_<versão>\<idioma>\xa\x64\sqljdbc_xa.dll
+
+
+LISTA DE ALTERAÇÕES
+-----------
+Alterações da versão 3.0 para a 4.0:
+
+1765616 DatabaseMetadata.getTypeInfo agora retorna novos valores java.sql.Type para date, time, datetime2, datetimeoffset para o Katmai e versões posteriores
+
+1764334 Suporte adicionado para rastreamento de tempo limite de JDBC XA e XIDs
+
+1750318 As funções SQLServerDatabaseMetaData funcionam corretamente quando uma conexão em pool é reusada.
+
+1768845 O comportamento de setTimestamp e updateTimestamp ficou consistente no que se refere ao arredondamento. Os dados serão arredondados 
+        primeiro para sete casas decimais pelo driver antes de enviá-lo ao servidor.
+
+1770134 updateTime em um tipo de back-end time backend com valor máximo (23:59:59.999) resulta em um comportamento correto de arredondamento
+
+1761042 Propriedades boolianas de DataSource registram chamadas de saída
+
+1750330 XA SQL Script atualizado para evitar erros na primeira execução
+
+1761393 Rastreamento aprimorado para métodos unwrap
+
+1945579 DatabaseMetaData.getSchemas funciona corretamente com o SQL Azure e SQL Server para todos os agrupamentos.
+
+1963089 A propriedade de conexão hostNameInCertificate não é mais obrigatória para validar um certificado SSL no SQL Azure.
+
+1958531 Se uma conexão a um servidor que não é configurado para espelhamento de banco de dados não funcionar durante o logon
+        (por exemplo, o banco de dados não existe), o driver não repetirá a operação automaticamente.
+
+1954701 A exceção enviada sobre a inserção de uma linha duplicada agora contém SQLState 23000.
+
+2055259 Mensagem de erro aprimorada quando há falha na autenticação integrada após o carregamento de sqljdbc_auth.dll.
+
+2083373 Consultas parametrizadas extensas, com argumentos inválidos, no SQL Azure agora enviam uma exceção sem fechar a conexão
+
+2084385 getDate, getTimestamp, getDateTimeOffset agora retorna valores corretos com JRE 1.7 para todas as datas.
+
+2105115 getObject em um ResultSet obtido de DatabaseMetaData.getColumns agora funciona corretamente.
+
+
+PROBLEMAS CONHECIDOS
+------------
+O Microsoft JDBC Driver 4.0 para SQL Server apresenta os seguintes problemas conhecidos:
+
+1) LIMITAÇÕES DE METADADOS DE PARÂMETROS COM A INSTRUÇÃO SQL MERGE.
+
+PreparedStatement.getParameterMetadata() envia SQLException quando usado com uma consulta parametrizada MERGE.
+
+
+2) JavaKerberos e IBM VMs
+
+Se estiver executando em ambientes Windows, você talvez tenha que especificar principalname no arquivo de configuração para fazer com que o Java Kerberos funcione. Por exemplo: 
+SQLJDBCDriver {
+com.ibm.security.auth.module.Krb5LoginModule required  useDefaultCcache=true credsType=initiator principal=principalname@principaldomain;
+};
+
+
+3) REMOÇÃO DE CONEXÕES COM SQL AZURE
+
+Ao conectar ao SQL Azure, conexões ociosas podem ser finalizadas por um componente de rede (como um firewall) depois 
+de um período de inatividade. Para evitar a remoção de conexões ociosas por um componente de rede, 
+as configurações do Registro a seguir (ou seus equivalentes em ambientes não Windows) devem ser definidas no sistema operacional no qual o driver foi carregado:
+           
+           Configuração do Registro                                                                     Valor recomendado
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\KeepAliveTime                 30000      
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\KeepAliveInterval             1000
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\TcpMaxDataRetransmission      10
+  
+
+
+
