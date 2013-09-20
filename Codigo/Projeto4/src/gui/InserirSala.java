@@ -45,7 +45,8 @@ public class InserirSala extends javax.swing.JFrame {
         jTextResponsavel = new javax.swing.JTextField();
         jTextCapacidade = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Inserir Sala");
 
         jBtAdicionar.setText("Adicionar");
         jBtAdicionar.addActionListener(new java.awt.event.ActionListener() {

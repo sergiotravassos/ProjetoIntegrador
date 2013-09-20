@@ -64,7 +64,9 @@ public class AlterarResponsavel extends javax.swing.JFrame {
         jTextCpf = new javax.swing.JFormattedTextField();
         jcbCodigo = new javax.swing.JComboBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Alterar Responsavel");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel2.setText("Nome: ");
 
@@ -80,6 +82,11 @@ public class AlterarResponsavel extends javax.swing.JFrame {
         });
 
         jTextCpf.setText("   .   .   -  ");
+        try {
+            jTextCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         jcbCodigo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jcbCodigo.addItemListener(new java.awt.event.ItemListener() {

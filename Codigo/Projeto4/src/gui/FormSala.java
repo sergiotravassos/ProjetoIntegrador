@@ -1,5 +1,6 @@
 package gui;
 
+import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
 import controle.ControleSala;
 import dados.OcupanteBD;
 import dados.ResponsavelBD;
@@ -97,7 +98,8 @@ public class FormSala extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Lista de salas");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -234,9 +236,13 @@ public class FormSala extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtAdicionarActionPerformed
 
     private void jBtDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtDeletarActionPerformed
-        if (JOptionPane.showConfirmDialog(null, "tem certeza que deseja excluir?") == 0) {
-            Sala sala = new Sala();
             int selec = jTable1.getSelectedRow();
+            if (selec <0){
+                JOptionPane.showMessageDialog(null,"Nenhuma sala selecionada","Erro",0);
+                return;
+            }
+            else if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir?") == 0) {
+            Sala sala = new Sala();
             sala.setCodigo(modelo.getValueAt(selec, 0).toString());
             sala.setNome(modelo.getValueAt(selec, 1).toString());
             String resp = modelo.getValueAt(selec, 2).toString();
@@ -285,7 +291,7 @@ public class FormSala extends javax.swing.JFrame {
             OcupanteBD banco4 = new OcupanteBD();
             arrayOcupante = banco4.listarTodosOcupantes();
             String ocu = "";
-            arrayOcupantes = banco3.listarTodasSalasOcupantes();
+            arrayOcupantes = banco3.listarSala_ocupante();
             for (int i = 0; i < arrayOcupantes.size(); i++) {
                 if (arrayOcupantes.get(i).getSala().getCodigo().equals(sala.getCodigo())) {
                     ocu = arrayOcupantes.get(i).getOcupante().getCodigo();

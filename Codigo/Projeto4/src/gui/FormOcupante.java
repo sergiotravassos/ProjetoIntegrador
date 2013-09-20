@@ -69,7 +69,8 @@ public class FormOcupante extends javax.swing.JFrame {
         jBtDeletar = new javax.swing.JButton();
         jBtAlterar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Lista de ocupantes");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -93,6 +94,8 @@ public class FormOcupante extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getColumnModel().getColumn(0).setHeaderValue("Codigo");
+        jTable1.getColumnModel().getColumn(1).setHeaderValue("Nome");
 
         jBtAdicionar.setText("Adicionar");
 
@@ -146,9 +149,13 @@ public class FormOcupante extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void jBtDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtDeletarActionPerformed
-        if (JOptionPane.showConfirmDialog(null, "tem certeza que deseja excluir?") == 0) {
+        int selec = jTable1.getSelectedRow();
+        if (selec <0){
+                JOptionPane.showMessageDialog(null,"Nenhum ocupante selecionado","Erro",0);
+                return;
+            }
+        else if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir?") == 0) {
             Ocupante ocupante = new Ocupante();
-            int selec = jTable1.getSelectedRow();
             ocupante.setCodigo(modelo.getValueAt(selec, 0).toString());
             try {
                 banco.removerOcupante(ocupante);

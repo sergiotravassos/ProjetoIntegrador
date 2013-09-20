@@ -60,7 +60,9 @@ public class AlterarOcupante extends javax.swing.JFrame {
         jcbCodigo = new javax.swing.JComboBox();
         jBtAlterar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Alterar Ocupante");
+        setResizable(false);
 
         jLabel1.setText("Codigo: ");
 

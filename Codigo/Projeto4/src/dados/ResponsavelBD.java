@@ -67,9 +67,9 @@ public class ResponsavelBD {
             ResultSet rs = conex.executeQuery(sql);
             while (rs.next()) {
                 Responsavel responsavel = new Responsavel();
-                responsavel.setCodigo(rs.getString("codigo"));
-                responsavel.setNome(rs.getString("nome"));
-                responsavel.setCpf(rs.getString("cpf"));
+                responsavel.setCodigo(rs.getString("Codigo"));
+                responsavel.setNome(rs.getString("Nome"));
+                responsavel.setCpf(rs.getString("CPF"));
                 retorno.add(responsavel);
             }
         } catch (SQLException e) {

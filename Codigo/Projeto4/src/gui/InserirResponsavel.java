@@ -40,7 +40,8 @@ public class InserirResponsavel extends javax.swing.JFrame {
         jTextCpf = new javax.swing.JFormattedTextField();
         jBtAdicioar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Inserir Responsavel");
 
         jLabel1.setText("Codigo: ");
 
@@ -49,6 +50,11 @@ public class InserirResponsavel extends javax.swing.JFrame {
         jLabel3.setText("CPF: ");
 
         jTextCpf.setText("   .   .   -  ");
+        try {
+            jTextCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         jBtAdicioar.setText("Adicionar");
         jBtAdicioar.addActionListener(new java.awt.event.ActionListener() {

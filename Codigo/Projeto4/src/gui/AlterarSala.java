@@ -61,7 +61,8 @@ public class AlterarSala extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jcbCodigo = new javax.swing.JComboBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Alterar Sala");
 
         jTextResponsavel.setEnabled(false);
 

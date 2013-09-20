@@ -13,7 +13,7 @@ public class ConexaoBD {
     public Statement conectar() throws Exception {
        
         try {
-            String nomeConexao = "Projeto4";
+            String nomeConexao = "dbProjeto";
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             con = DriverManager.getConnection("jdbc:odbc:" + nomeConexao);
         } catch (ClassNotFoundException e) {

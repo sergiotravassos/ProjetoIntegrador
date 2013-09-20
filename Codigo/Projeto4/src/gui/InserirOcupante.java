@@ -39,7 +39,8 @@ public class InserirOcupante extends javax.swing.JFrame {
         jTextNome = new javax.swing.JTextField();
         jBtAdicionar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Inserir Ocupante");
 
         jLabel1.setText("Codigo: ");
 

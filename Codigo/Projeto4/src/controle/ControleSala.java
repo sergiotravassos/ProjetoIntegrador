@@ -87,12 +87,17 @@ public class ControleSala {
     }
 
     public void removerSala(Sala s) throws Exception {
+        
         JOptionPane.showMessageDialog(null, "VAlida");
         String ERRO = "";
+        if(s.getCodigo().equals("")){
+            ERRO = ERRO + "Nenhuma sala foi selecionada!";
+        }
+                
         if ("".equals(s.getResponsavel().getCodigo())){
             ERRO = ERRO + "Existe um responasvel nessa sala";
         }
-        arraySala_ocupante = banco2.listarTodasSalasOcupantes();
+        arraySala_ocupante = banco2.listarSala_ocupante();
         for (int i = 0; i < arraySala_ocupante.size(); i++) {
             if (arraySala_ocupante.get(i).getSala().getCodigo() == s.getCodigo()){
                 ERRO = ERRO + "e ocupantes também";
